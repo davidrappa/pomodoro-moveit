@@ -15,7 +15,7 @@ import {
 
 import styles from "../styles/pages/Dashboard.module.css";
 
-interface DashboardProps {
+interface SettingsProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
