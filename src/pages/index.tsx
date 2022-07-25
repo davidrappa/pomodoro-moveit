@@ -1,16 +1,13 @@
+import Cookies from "js-cookie";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
 
-import {
-  ChallengeBox,
-  CompletedChallenges,
-  Countdown,
-  ExperienceBar,
-  Profile,
-} from "../components";
+import styles from "../styles/pages/Home.module.css";
 
 interface HomeProps {
   level: number;
@@ -18,9 +15,32 @@ interface HomeProps {
   challengesCompleted: number;
 }
 
-import styles from "../styles/pages/Home.module.css";
-
 const Home = (props: HomeProps): JSX.Element => {
+  const [username, setUsername] = useState("");
+
+  const router = useRouter();
+
+  function handleSetUsername(event: { target: { value: string } }) {
+    const inputName = event.target.value;
+    setUsername(inputName);
+  }
+
+  function handleNavigateToDashboard() {
+    if (!username) {
+      alert("Favor preencher o campo para continuar ou entrar como convidado!");
+
+      return;
+    }
+    Cookies.set("username", username);
+    router.push("/dashboard");
+  }
+
+  useEffect(() => {
+    if (Cookies.get("username")) {
+      router.push("/dashboard");
+    }
+  }, []);
+
   return (
     <ChallengesProvider
       level={props.level}
@@ -32,19 +52,43 @@ const Home = (props: HomeProps): JSX.Element => {
           <title>Inicio | Move.it</title>
         </Head>
 
-        <div className={styles.container}>
-          <ExperienceBar />
+        <div className={styles.homeContainer}>
+          <div className={styles.homeBackgroundImage}>
+            <picture>
+              <img src="logo-background.svg" alt="" />
+            </picture>
+          </div>
+          <div className={styles.homeLogin}>
+            <picture>
+              <img src="logo-moveit.svg" alt="" />
+            </picture>
 
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
+            <div className={styles.homeLoginContent}>
+              <h2>Bem-vindo</h2>
+
+              <div className={styles.homeLoginGithub}>
+                <picture>
+                  <img src="icons/github.svg" alt="" />
+                </picture>
+                <p>Faça login com seu Github para começar</p>
+              </div>
+
+              <div className={styles.homeLoginInput}>
+                <input
+                  type="text"
+                  placeholder="Digite seu nome"
+                  onChange={handleSetUsername}
+                  value={username}
+                />
+
+                <button onClick={handleNavigateToDashboard}>
+                  <picture>
+                    <img src="icons/arrow-left.svg" alt="" />
+                  </picture>
+                </button>
+              </div>
             </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
+          </div>
         </div>
       </CountdownProvider>
     </ChallengesProvider>
@@ -54,12 +98,10 @@ const Home = (props: HomeProps): JSX.Element => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+  const { username } = ctx.req.cookies;
   return {
     props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
+      username: String(username),
     },
   };
 };
