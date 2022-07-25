@@ -1,0 +1,116 @@
+.sidebarContainer {
+  width: 112px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--white);
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sidebarContent picture {
+  display: flex;
+}
+
+.sidebarLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px;
+}
+
+.sidebarIconsItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebarIconsItemActive {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sidebarIconsItemNoActiveHouse {
+  padding: 12px 0;
+}
+
+.sidebarIconsItemNoActiveSettings {
+  padding: 12px 0;
+}
+
+.sidebarSwitchMode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+  flex-direction: column;
+}
+
+.sidebarSwitchMode picture {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.sidebarSwitchMode picture img {
+  width: 30px;
+}
+
+.sidebarSwitch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.sidebarSwitchSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.sidebarSwitchSlider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .sidebarSwitchSlider {
+  background-color: var(--blue);
+}
+
+input:focus + .sidebarSwitchSlider {
+  box-shadow: 0 0 1px var(--blue);
+}
+
+input:checked + .sidebarSwitchSlider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+.sidebarSwitchSlider.sidebarSwitchRound {
+  border-radius: 34px;
+}
+
+.sidebarSwitchSlider.sidebarSwitchRound:before {
+  border-radius: 50%;
+}

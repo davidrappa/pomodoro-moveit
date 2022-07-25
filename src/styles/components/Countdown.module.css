@@ -51,7 +51,22 @@
   font-size: 1.5rem;
   font-weight: 600;
 
+  gap: 10px;
+
   transition: background-color 0.2s;
+}
+
+.countdownButton:hover {
+  transform: translateY(-2px);
+}
+
+.countdownButtonAbandonedActive {
+  background: var(--red);
+  color: var(--white);
+}
+
+.countdownButtonAbandonedActive:hover {
+  transform: translateY(-2px);
 }
 
 .countdownButtonActive {
@@ -68,4 +83,10 @@
   background: var(--white);
   color: var(--text);
   cursor: not-allowed;
+}
+
+.countdownButton picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
