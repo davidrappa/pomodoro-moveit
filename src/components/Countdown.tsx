@@ -34,6 +34,9 @@ const Countdown = (): JSX.Element => {
       {hasFinished ? (
         <button disabled className={styles.countdownButton}>
           Ciclo encerrado
+          <picture>
+            <img src="icons/check.svg" alt="" />
+          </picture>
         </button>
       ) : (
         <Fragment>
@@ -41,9 +44,12 @@ const Countdown = (): JSX.Element => {
             <button
               type="button"
               onClick={resetCountdown}
-              className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+              className={`${styles.countdownButton} ${styles.countdownButtonAbandonedActive}`}
             >
               Abandonar ciclo
+              <picture>
+                <img src="icons/abandoned.svg" alt="" />
+              </picture>
             </button>
           ) : (
             <button
@@ -52,6 +58,9 @@ const Countdown = (): JSX.Element => {
               className={styles.countdownButton}
             >
               Iniciar um ciclo
+              <picture>
+                <img src="icons/start.svg" alt="" />
+              </picture>
             </button>
           )}
         </Fragment>
