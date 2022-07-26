@@ -1,8 +1,8 @@
 import { Fragment, useContext } from "react";
 
-import { CountdownContext } from "../contexts/CountdownContext";
+import { CountdownContext } from "../../contexts/CountdownContext";
 
-import styles from "../styles/components/Countdown.module.css";
+import styles from "./Countdown.module.css";
 
 const Countdown = (): JSX.Element => {
   const {

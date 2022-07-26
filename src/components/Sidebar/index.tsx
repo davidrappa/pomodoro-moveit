@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
-import styles from "../styles/components/Sidebar.module.css";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
   const { pathname } = useRouter();
@@ -51,7 +50,8 @@ const Sidebar = () => {
             </a>
           </Link>
         </div>
-        <div className={styles.sidebarSwitchMode}>
+        <div className={styles.sidebarEmptyDiv}></div>
+        {/* <div className={styles.sidebarSwitchMode}>
           <picture>
             <img src="icons/dark-theme.svg" alt="" />
           </picture>
@@ -61,7 +61,7 @@ const Sidebar = () => {
               className={`${styles.sidebarSwitchSlider} ${styles.sidebarSwitchRound}`}
             ></span>
           </label>
-        </div>
+        </div> */}
       </div>
     </div>
   );

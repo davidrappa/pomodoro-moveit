@@ -45,6 +45,11 @@
   padding: 12px 0;
 }
 
+.sidebarEmptyDiv {
+  width: 100%;
+  height: 100px;
+}
+
 .sidebarSwitchMode {
   display: flex;
   align-items: center;
